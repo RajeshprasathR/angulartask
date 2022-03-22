@@ -1,0 +1,59 @@
+<div class="container mt-5">
+
+    <!-- <div *ngIf="errormsg" class="alert alert-danger alert-dismissible fade show" role="alert" style="width:550px;">
+        <strong>{{ errormsg }}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div> -->
+      <div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ successmsg }}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+    <form [formGroup]="userForm">
+        <div class="col-lg-6 mt-1">
+            <label><b>First Name</b><sup>*</sup></label>
+            <input type="text" name="firstname" class="form-control" formControlName="firstname" placeholder="Enter your first name">
+        </div>
+        <span style="color:red;" class="help-block err" *ngIf="firstname && firstname.invalid && firstname.touched">
+            Please enter your first name!
+        </span><br>
+        <div class="col-lg-6 mt-1">
+            <label><b>Last Name</b><sup>*</sup></label>
+            <input type="text" name="lastname" class="form-control" formControlName="lastname" placeholder="Enter your last name">
+        </div>
+        <span style="color:red;" class="help-block" *ngIf="lastname && lastname.invalid && lastname.touched">
+            Please enter your last name!
+        </span><br>
+        <div class="col-lg-6 mt-1">
+            <label><b>Email Id</b><sup>*</sup></label>
+            <input type="email" required name="email" class="form-control" formControlName="email" placeholder="Enter your email id">
+        </div>
+        <span style="color:red;" class="help-block" *ngIf="email && email.invalid && email.touched">
+            Please enter your email id!
+        </span><br>
+        <div class="col-lg-6 mt-1">
+            <label><b>Date of birth</b><sup>*</sup></label>
+            <input type="date" class="form-control" formControlName="dob" [(ngModel)]="age" (click)="test()">
+        </div>
+        <span style="color:red;" class="help-block" *ngIf="dob && dob.invalid && dob.touched">
+            Please enter your date of birth!
+          </span>  
+          <span style="color:red;" class="help-block" *ngIf="show">
+            Only allowed user age is 18+ above!
+          </span><br>
+        <div class="col-lg-6 mt-1">
+            <label><b>Mobile Number</b><sup>*</sup></label>
+            <input type="text" name="mobileno" class="form-control" formControlName="mobileno" placeholder="Enter your mobile number">
+        </div>
+        <span style="color:red;" class="help-block" *ngIf="mobileno && mobileno.invalid && mobileno.touched">
+            Please enter your 10 digit mobile number!
+        </span><br> 
+        <div class="col-lg-6 mt-2" *ngIf="!getparamid" (click)="userSubmit()">
+            <button class="btn btn-success btn-sm" [disabled]="!userForm.valid">Submit</button>
+        </div>
+        <div class="col-lg-6 mt-2" *ngIf="getparamid" (click)="userUpdate()">
+            <button class="btn btn-dark btn-sm" [disabled]="!userForm.valid">Update</button>
+        </div>
+    </form>
+
+</div>
